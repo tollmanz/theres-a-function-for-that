@@ -547,7 +547,7 @@ function addFontStyle() {
 	el.rel = 'stylesheet';
 	el.type = 'text/css';
 	el.href = 'http://fonts.googleapis.com/css?family=' +
-		'Oswald:400,700|Open+Sans:300,300italic,700,700italic';
+		'Overlock:400,900|Open+Sans:300,300italic,700,700italic|Inconsolata';
 
 	document.body.appendChild(el);
 };

@@ -24,6 +24,255 @@
 
 	<section class='slides layout-regular template-default'>
 
+        <article>
+
+            <h3>current_filter</h3>
+
+			<h4>Args</h4>
+			<ul>
+				<li>none</li>
+			</ul>
+
+			<h4>Return</h4>
+			<ul>
+				<li>[string] name of the currently executing filter</li>
+			</ul>
+
+		</article>
+
+        <article>
+
+            <h3>current_filter</h3>
+
+			<h4>Example</h4>
+
+            <p>Alex Mills - Localtime (http://wordpress.org/extend/plugins/localtime/)</p>
+
+            <pre>public function add_html( $string, $format ) {
+    ...
+    switch ( current_filter() ) {
+        case 'get_the_date':
+        case 'get_comment_date':
+            $format = get_option( 'date_format' );
+            break;
+
+        case 'get_post_time':
+        case 'get_comment_time':
+            $format = get_option( 'time_format' );
+            break;
+
+        default;
+            return $string;
+    }
+    ...
+}</pre>
+
+		</article>
+
+        <article>
+
+            <h3>current_filter</h3>
+
+			<h4>Example</h4>
+
+            <p>Michael Fields - Taxonomy Images (https://github.com/mfields/Taxonomy-Images)</p>
+
+            <pre>function taxim_get_terms( $default, $args = array() ) {
+    $filter = 'taxim-get-terms';
+
+    if ( $filter !== current_filter() ) {
+        taxim_please_use_filter( __FUNCTION__, $filter );
+    }
+    ...
+}</pre>
+
+		</article>
+
+		<article>
+
+            <h3>wp_list_pluck</h3>
+
+			<h4>Args</h4>
+			<ul>
+				<li>$list [array|object]</li>
+				<li>$field [string]</li>
+			</ul>
+
+			<h4>Return</h4>
+			<ul>
+				<li>[array] Single dimension array containing only the $field values from the child array|object within $list</li>
+			</ul>
+
+		</article>
+
+		<article>
+
+            <h3>wp_list_pluck</h3>
+
+			<h4>Example</h4>
+            <pre>
+$posts = get_posts();
+var_dump( $posts );</pre>
+
+		</article>
+
+		<article>
+
+            <h3>wp_list_pluck</h3>
+
+			<h4>Example</h4>
+            <pre>
+<b>array</b>
+  0 <font color="#888a85">=&gt;</font>
+    <b>object</b>(<i>stdClass</i>)[<i>81</i>]
+      <i>public</i> 'ID' <font color="#888a85">=&gt;</font> <small>int</small> <font color="#4e9a06">801</font>
+      <i>public</i> 'post_author' <font color="#888a85">=&gt;</font> <small>string</small> <font color="#cc0000">'1'</font> <i>(length=1)</i>
+      <i>public</i> 'post_date' <font color="#888a85">=&gt;</font> <small>string</small> <font color="#cc0000">'2012-05-04 17:40:12'</font> <i>(length=19)</i>
+        ...
+  1 <font color="#888a85">=&gt;</font>
+    <b>object</b>(<i>stdClass</i>)[<i>82</i>]
+      <i>public</i> 'ID' <font color="#888a85">=&gt;</font> <small>int</small> <font color="#4e9a06">797</font>
+      <i>public</i> 'post_author' <font color="#888a85">=&gt;</font> <small>string</small> <font color="#cc0000">'2'</font> <i>(length=1)</i>
+      <i>public</i> 'post_date' <font color="#888a85">=&gt;</font> <small>string</small> <font color="#cc0000">'2012-05-04 17:39:30'</font> <i>(length=19)</i>
+        ...
+  2 <font color="#888a85">=&gt;</font>
+    <b>object</b>(<i>stdClass</i>)[<i>83</i>]
+      <i>public</i> 'ID' <font color="#888a85">=&gt;</font> <small>int</small> <font color="#4e9a06">784</font>
+      <i>public</i> 'post_author' <font color="#888a85">=&gt;</font> <small>string</small> <font color="#cc0000">'1'</font> <i>(length=1)</i>
+      <i>public</i> 'post_date' <font color="#888a85">=&gt;</font> <small>string</small> <font color="#cc0000">'2012-04-29 01:22:08'</font> <i>(length=19)</i>
+        ...</pre>
+
+		</article>
+
+		<article>
+
+            <h3>wp_list_pluck</h3>
+
+			<h4>Example</h4>
+            <pre>
+$posts = get_posts();
+wp_list_pluck( $posts, 'ID' );</pre>
+
+            <pre><b>array</b>
+  0 <font color="#888a85">=&gt;</font> <small>int</small> <font color="#4e9a06">801</font>
+  1 <font color="#888a85">=&gt;</font> <small>int</small> <font color="#4e9a06">797</font>
+  2 <font color="#888a85">=&gt;</font> <small>int</small> <font color="#4e9a06">784</font></pre>
+
+		</article>
+
+		<article>
+
+            <h3>wp_list_pluck</h3>
+
+			<h4>Example</h4>
+
+            <p>Scribu's Posts 2 Posts (http://scribu.net/wordpress/posts-to-posts)</p>
+
+            <pre>public function get_related( $post_id, $extra_qv = array() ) {
+    $post_id = (array) $post_id;
+
+    $connected = $this->get_connected( $post_id, $extra_qv );
+    if ( !$connected )
+        return false;
+
+    if ( !$connected->have_posts() )
+        return $connected;
+
+    $connected_ids = wp_list_pluck( $connected->posts, 'ID' );
+
+    return $this->get_connected( $connected_ids, array(
+        'post__not_in' => $post_id,
+    ) );
+}</pre>
+
+		</article>
+
+        <article>
+
+            <h3>locate_template</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$template_names [array|string] Template file(s) to search for</li>
+                <li>$load [bool] True to load template; false to just return path</li>
+                <li>$require_once [bool] True for require_once; false for require</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[string] path to file</li>
+            </ul>
+
+            <h4>Action</h4>
+            <ul>
+                <li>require's (or require_once's) the template</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>locate_template</h3>
+
+            <h4>Example</h4>
+
+            <p>Modern Tribe - The Events Calendar (http://tri.be/wordpress-events-calendar/)</p>
+
+            <pre>public static function getTemplateHierarchy( $template ) {
+    $tribe_ecp = TribeEvents::instance();
+
+    if ( substr( $template, -4)  != '.php' )
+        $template .= '.php';
+
+    $templates = array( 'events/' . $template );
+
+    if ( $theme_file = locate_template( $templates ) )
+        $file = $theme_file;
+    else
+        $file = $tribe_ecp->pluginPath . 'views/' . $template;
+
+    return apply_filters( 'tribe_events_template_' . $template, $file );
+}</pre>
+
+        </article>
+
+        <article>
+
+            <h3>get_queried_object_id</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>none</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[integer] ID of the current $wp_the_query object</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>get_queried_object_id</h3>
+
+            <h4>Example</h4>
+
+            <p>Justin Tadlock - Breadcrumb Trail (http://justintadlock.com/archives/2009/04/05/breadcrumb-trail-wordpress-plugin)</p>
+
+            <pre>function breadcrumb_trail_get_items( $args = array() ) {
+    if ( is_home() ) {
+        $home_page = get_page( get_queried_object_id() );
+        $trail['trail_end'] = get_the_title( $home_page->ID );
+    } elseif ( is_singular() ) {
+        $post = get_queried_object();
+        $post_id = absint( get_queried_object_id() );
+        $post_type = $post->post_type;
+    }
+}</pre>
+
+        </article>
+
 	</section>
 
 </body>

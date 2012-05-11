@@ -17,6 +17,7 @@
 		<title>There's a Function for That | Doing More for Less with Core Functions</title>
 
 		<meta charset='utf-8'>
+        <link href="fonts.css" type="text/css" rel="stylesheet" media="all">
 		<script src='slides.js'></script>
 	</head>
 
@@ -33,6 +34,19 @@
                 @tollmanz<br>
                 10up.com
             </p>
+
+        </article>
+
+        <article>
+
+            <h2>Gameplan</h2>
+
+            <p>Propaganda</p>
+            <p>Functions</p>
+            <ul>
+                <li>Function Definition</li>
+                <li>Real World Example</li>
+            </ul>
 
         </article>
 
@@ -64,6 +78,11 @@
 				<li>[string] name of the currently executing filter</li>
 			</ul>
 
+            <h4>Notes</h4>
+            <ul>
+                <li>current_action also exists</li>
+            </ul>
+
 		</article>
 
         <article>
@@ -75,7 +94,6 @@
             <p>Alex Mills - Localtime <a href="http://wordpress.org/extend/plugins/localtime/"><img src="images/link.png"></a></p>
 
             <pre>public function add_html( $string, $format ) {
-    ...
     switch ( current_filter() ) {
         case 'get_the_date':
         case 'get_comment_date':
@@ -90,7 +108,6 @@
         default;
             return $string;
     }
-    ...
 }</pre>
 
 		</article>
@@ -109,7 +126,6 @@
     if ( $filter !== current_filter() ) {
         taxim_please_use_filter( __FUNCTION__, $filter );
     }
-    ...
 }</pre>
 
 		</article>
@@ -356,10 +372,9 @@ wp_list_pluck( $posts, 'ID' );</pre>
                 <li>[string] 'selected="selected"' or empty string</li>
             </ul>
 
-            <h4>Cousins</h4>
+            <h4>Related</h4>
             <ul>
-                <li>checked</li>
-                <li>disabled</li>
+                <li>checked(), disabled()</li>
             </ul>
 
         </article>

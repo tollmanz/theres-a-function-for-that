@@ -542,16 +542,6 @@ function addPrettify() {
 	document.body.appendChild(el);
 };
 
-function addFontStyle() {
-	var el = document.createElement('link');
-	el.rel = 'stylesheet';
-	el.type = 'text/css';
-	el.href = 'http://fonts.googleapis.com/css?family=' +
-		'Overlock:400,900|Open+Sans:300,300italic,700,700italic|Inconsolata';
-
-	document.body.appendChild(el);
-};
-
 function addGeneralStyle() {
 	var el = document.createElement('link');
 	el.rel = 'stylesheet';
@@ -586,7 +576,6 @@ function handleDomLoaded() {
 
 	setupFrames();
 
-	addFontStyle();
 	addGeneralStyle();
 	addPrettify();
 	addEventListeners();

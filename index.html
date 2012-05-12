@@ -66,6 +66,48 @@
 
         <article>
 
+            <h3>selected</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$checked [mixed] value to match against $current</li>
+                <li>$current [mixed] value to match against $checked; default = (bool) true</li>
+                <li>$echo [bool] true to echo; false to return; default = (bool) true</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[string] 'selected="selected"' or empty string</li>
+            </ul>
+
+            <h4>Related</h4>
+            <ul>
+                <li>checked(), disabled()</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>selected</h3>
+
+            <h4>Example</h4>
+
+            <p>Aaron Campbell - Twitter Widget Pro <a href="http://bluedogwebservices.com/wordpress-plugin/twitter-widget-pro/"><img src="images/link.png"></a></p>
+
+            <pre>&lt;select name="<?php echo $this->get_field_name( 'items' ); ?>"&gt;
+&lt;?php for ( $i = 1; $i <= 20; ++$i ) {
+    echo "&lt;option value='$i' ";
+    echo selected( $instance['items'], $i, false );
+    echo "&gt;$i&lt;/option&gt;";
+}
+?&gt;
+&lt;/select&gt;</pre>
+
+        </article>
+
+        <article>
+
             <h3>current_filter</h3>
 
 			<h4>Args</h4>
@@ -130,22 +172,333 @@
 
 		</article>
 
-		<article>
+        <article>
+
+            <h3>in_the_loop</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>none</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[bool] True if in loop; false if not</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>in_the_loop</h3>
+
+            <h4>Example</h4>
+
+            <p>Jon Bishop - Socialize <a href="http://www.jonbishop.com/2011/04/introducing-socialize-2-0-wordpress-plugin/"><img src="images/link.png"></a></p>
+
+            <pre>add_filter( 'the_content', 'soc_insert_socialize' );
+add_filter( 'the_excerpt', 'soc_insert_socialize' );
+
+function soc_insert_socialize( $content ) {
+    if ( in_the_loop() ) {
+        // Magic
+    }
+    return $content;
+}</pre>
+
+        </article>
+
+        <article>
+
+            <h3>human_time_diff</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$from [int] start of interval</li>
+                <li>$to [int] end of interval; default = time()</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[string] human readable difference between $from and $to</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>human_time_diff</h3>
+
+            <h4>Example</h4>
+
+            <p>Zack Tollman/Helen Hou-Sand&iacute; - Debug Bar Cron <a href="http://wordpress.org/extend/plugins/debug-bar-cron/"><img src="images/link.png"></a></p>
+
+            <pre>$time_next_cron = date( 'Y-m-d H:i:s', $unix_time_next_cron );
+$human_time_next_cron = human_time_diff( $unix_time_next_cron );
+
+echo '&lt;h2 class="times"&gt;&lt;span&gt;';
+echo '__( 'Next Event', 'zt-debug-bar-cron' ) . ':&lt;/span&gt;';
+echo $time_next_cron . '&lt;br /&gt;';
+echo $unix_time_next_cron . '&lt;br /&gt;';
+echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
+
+            <img src="images/different-time-views.png" />
+
+        </article>
+
+        <article>
+
+            <h3>add_query_arg</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$args [array] query var/value pairs</li>
+                <li>$url [string] URL to append query vars to</li>
+                <li>*none required</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[string] URL with query vars appended</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>add_query_arg</h3>
+
+            <h4>Example</h4>
+
+            <p>Pippin Williamson - Easy Digital Downloads <a href="http://easydigitaldownloads.com/"><img src="images/link.png"></a></p>
+
+            <pre>function edd_get_download_url( $key, $email, $filekey, $download ) {
+    $params = array(
+        'download_key' => $key,
+        'email' => urlencode( $email ),
+        'file' => $filekey,
+        'download' => $download,
+        'expire' => strtotime( '+1 day', time() )
+    );
+
+    $download_url = add_query_arg( params, home_url() );
+    return $download_url;
+}</pre>
+
+        </article>
+
+        <article>
+
+            <h3>locate_template</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$template_names [array|string] Template file(s) to search for</li>
+                <li>$load [bool] True to load template; false to just return path</li>
+                <li>$require_once [bool] True for require_once; false for require</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[string] path to file</li>
+            </ul>
+
+            <h4>Action</h4>
+            <ul>
+                <li>require's (or require_once's) the template</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>locate_template</h3>
+
+            <h4>Example</h4>
+
+            <p>Modern Tribe - The Events Calendar <a href="http://tri.be/wordpress-events-calendar/"><img src="images/link.png"></a></p>
+
+            <pre>public static function getTemplateHierarchy( $template ) {
+    $tribe_ecp = TribeEvents::instance();
+
+    if ( substr( $template, -4)  != '.php' )
+        $template .= '.php';
+
+    $templates = array( 'events/' . $template );
+
+    if ( $theme_file = locate_template( $templates ) )
+        $file = $theme_file;
+    else
+        $file = $tribe_ecp->pluginPath . 'views/' . $template;
+
+    return apply_filters( 'tribe_events_template_' . $template, $file );
+}</pre>
+
+        </article>
+
+        <article>
+
+            <h3>require_if_theme_supports</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$feature [string] name of theme feature</li>
+                <li>$include [string] path to required file</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>void</li>
+            </ul>
+
+            <h4>Action</h4>
+            <ul>
+                <li>adds specified file if the current theme supports the feature</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>require_if_theme_supports</h3>
+
+            <h4>Example</h4>
+
+            <p>Justin Tadlock - Theme Hybrid Framework <a href="http://themehybrid.com/"><img src="images/link.png"></a></p>
+
+            <pre>// In Parent
+function extensions() {
+    /* Load the Cleaner Caption extension if supported. */
+    require_if_theme_supports(
+        'cleaner-caption',
+        trailingslashit( HYBRID_EXTENSIONS ) . 'cleaner-caption.php'
+    );
+
+    /* Load the Entry Views extension if supported. */
+    require_if_theme_supports(
+        'entry-views',
+        trailingslashit( HYBRID_EXTENSIONS ) . 'entry-views.php'
+    );
+}
+
+// In Child
+add_theme_support( 'entry-views' );</pre>
+
+        </article>
+
+        <article>
+
+            <h3>get_queried_object_id</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>none</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[integer] ID of the current $wp_the_query object</li>
+            </ul>
+
+            <h4>Related</h4>
+            <ul>
+                <li>get_queried_object</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>get_queried_object_id</h3>
+
+            <h4>Example</h4>
+
+            <p>Thorsten Ott - Nav Menu Cache <a href="http://hitchhackerguide.com/2011/10/07/caching-wordpress-navigation-menus-wp_nav_menu-wrapper/"><img src="images/link.png"></a></p>
+
+            <pre>function hh_cached_nav_menu( $args = array(), $prime = false ) {
+    if ( get_queried_object_id() )
+        $qoi = get_queried_object_id();
+    else
+        $qoi = 0;
+
+    $nav_menu_key = md5( serialize( $args ) . '-' . $qoi );
+
+    if ( ! $nav_menu = get_transient( $nav_menu_key ) ) {
+        ob_start();
+        wp_nav_menu( $args );
+        $nav_menu = ob_get_clean();
+        set_transient( $nav_menu_key, $nav_menu );
+    }
+
+    return $nav_menu;
+}</pre>
+
+        </article>
+
+        <article>
+
+            <h3>wp_parse_args</h3>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$args [string|array] value(s) to merge with $defaults</li>
+                <li>$defaults [string|array] value(s) to merge with $args</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>[array] merged value(s)</li>
+            </ul>
+
+            <h4>Action</h4>
+            <ul>
+                <li>adds specified file if the current theme supports the feature</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>wp_parse_args</h3>
+
+            <h4>Example</h4>
+
+            <p>Otto - Simple Facebook Connect <a href="http://ottopress.com/wordpress-plugins/simple-facebook-connect/"><img src="images/link.png"></a></p>
+
+            <pre>function get_sfc_activity_feed($args) {
+    $args = wp_parse_args($args, array(
+        'header'=>'true',
+        'site'=>'',
+        'bordercolor'=>'000000',
+        'width'=>'260',
+        'height'=>'400',
+        'font'=>'lucida+grande',
+        'colorscheme'=>'light',
+        'recommendations'=>'false')
+    );
+    extract($args);
+
+    return "&lt;fb:activity site='{$host}' {$path} width='{$width}' height='{$height}' header='{$header}' colorscheme='{$colorscheme}' font='{$font}' border_color='{$bordercolor}' recommendations='{$recommendations}'&gt;&lt;/fb:activity&gt;";
+}</pre>
+
+        </article>
+
+        <article>
 
             <h3>wp_list_pluck</h3>
 
-			<h4>Args</h4>
-			<ul>
-				<li>$list [array|object]</li>
-				<li>$field [string]</li>
-			</ul>
+            <h4>Args</h4>
+            <ul>
+                <li>$list [array|object]</li>
+                <li>$field [string]</li>
+            </ul>
 
-			<h4>Return</h4>
-			<ul>
-				<li>[array] Single dimension array containing only the $field values from the child array|object within $list</li>
-			</ul>
+            <h4>Return</h4>
+            <ul>
+                <li>[array] Single dimension array containing only the $field values from the child array|object within $list</li>
+            </ul>
 
-		</article>
+        </article>
 
 		<article>
 
@@ -228,322 +581,6 @@ wp_list_pluck( $posts, 'ID' );</pre>
 }</pre>
 
 		</article>
-
-        <article>
-
-            <h3>locate_template</h3>
-
-            <h4>Args</h4>
-            <ul>
-                <li>$template_names [array|string] Template file(s) to search for</li>
-                <li>$load [bool] True to load template; false to just return path</li>
-                <li>$require_once [bool] True for require_once; false for require</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[string] path to file</li>
-            </ul>
-
-            <h4>Action</h4>
-            <ul>
-                <li>require's (or require_once's) the template</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>locate_template</h3>
-
-            <h4>Example</h4>
-
-            <p>Modern Tribe - The Events Calendar <a href="http://tri.be/wordpress-events-calendar/"><img src="images/link.png"></a></p>
-
-            <pre>public static function getTemplateHierarchy( $template ) {
-    $tribe_ecp = TribeEvents::instance();
-
-    if ( substr( $template, -4)  != '.php' )
-        $template .= '.php';
-
-    $templates = array( 'events/' . $template );
-
-    if ( $theme_file = locate_template( $templates ) )
-        $file = $theme_file;
-    else
-        $file = $tribe_ecp->pluginPath . 'views/' . $template;
-
-    return apply_filters( 'tribe_events_template_' . $template, $file );
-}</pre>
-
-        </article>
-
-        <article>
-
-            <h3>get_queried_object_id</h3>
-
-            <h4>Args</h4>
-            <ul>
-                <li>none</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[integer] ID of the current $wp_the_query object</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>get_queried_object_id</h3>
-
-            <h4>Example</h4>
-
-            <p>Justin Tadlock - Breadcrumb Trail <a href="http://justintadlock.com/archives/2009/04/05/breadcrumb-trail-wordpress-plugin"><img src="images/link.png"></a></p>
-
-            <pre>function breadcrumb_trail_get_items( $args = array() ) {
-    if ( is_home() ) {
-        $home_page = get_page( get_queried_object_id() );
-        $trail['trail_end'] = get_the_title( $home_page->ID );
-    } elseif ( is_singular() ) {
-        $post = get_queried_object();
-        $post_id = absint( get_queried_object_id() );
-        $post_type = $post->post_type;
-    }
-}</pre>
-
-        </article>
-
-        <article>
-
-            <h3>add_query_arg</h3>
-
-            <h4>Args</h4>
-            <ul>
-                <li>$args [array] query var/value pairs</li>
-                <li>$url [string] URL to append query vars to</li>
-                <li>*none required</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[string] URL with query vars appended</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>add_query_arg</h3>
-
-            <h4>Example</h4>
-
-            <p>Pippin Williamson - Easy Digital Downloads <a href="http://easydigitaldownloads.com/"><img src="images/link.png"></a></p>
-
-            <pre>function edd_get_download_url( $key, $email, $filekey, $download ) {
-    $params = array(
-        'download_key' => $key,
-        'email' => urlencode( $email ),
-        'file' => $filekey,
-        'download' => $download,
-        'expire' => strtotime( '+1 day', time() )
-    );
-
-    $download_url = add_query_arg( params, home_url() );
-    return $download_url;
-}</pre>
-
-        </article>
-
-        <article>
-
-            <h3>selected</h3>
-
-            <h4>Args</h4>
-            <ul>
-                <li>$checked [mixed] value to match against $current</li>
-                <li>$current [mixed] value to match against $checked; default = (bool) true</li>
-                <li>$echo [bool] true to echo; false to return; default = (bool) true</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[string] 'selected="selected"' or empty string</li>
-            </ul>
-
-            <h4>Related</h4>
-            <ul>
-                <li>checked(), disabled()</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>selected</h3>
-
-            <h4>Example</h4>
-
-            <p>Aaron Campbell - Twitter Widget Pro <a href="http://bluedogwebservices.com/wordpress-plugin/twitter-widget-pro/"><img src="images/link.png"></a></p>
-
-            <pre>&lt;select name="<?php echo $this->get_field_name( 'items' ); ?>"&gt;
-&lt;?php for ( $i = 1; $i <= 20; ++$i ) {
-    echo "&lt;option value='$i' ";
-    echo selected( $instance['items'], $i, false );
-    echo "&gt;$i&lt;/option&gt;";
-}
-?&gt;
-&lt;/select&gt;</pre>
-
-        </article>
-
-        <article>
-
-            <h3>human_time_diff</h3>
-
-            <h4>Args</h4>
-            <ul>
-                <li>$from [int] start of interval</li>
-                <li>$to [int] end of interval; default = time()</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[string] human readable difference between $from and $to</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>human_time_diff</h3>
-
-            <h4>Example</h4>
-
-            <p>Zack Tollman/Helen Hou-Sand&iacute; - Debug Bar Cron <a href="http://wordpress.org/extend/plugins/debug-bar-cron/"><img src="images/link.png"></a></p>
-
-            <pre>$cron_times = array_keys( $this->_crons );
-$unix_time_next_cron = $cron_times[0];
-
-$time_next_cron = date( 'Y-m-d H:i:s', $unix_time_next_cron );
-$human_time_next_cron = human_time_diff( $unix_time_next_cron );
-
-echo '&lt;h2 class="times"&gt;&lt;span&gt;';
-echo '__( 'Next Event', 'zt-debug-bar-cron' ) . ':&lt;/span&gt;';
-echo $time_next_cron . '&lt;br /&gt;';
-echo $unix_time_next_cron . '&lt;br /&gt;';
-echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
-
-        </article>
-
-        <article>
-
-            <h3>human_time_diff</h3>
-
-            <h4>Example</h4>
-
-            <img src="images/different-time-views.png" />
-
-        </article>
-
-        <article>
-
-            <h3>require_if_theme_supports</h3>
-
-            <h4>Args</h4>
-            <ul>
-                <li>$feature [string] name of theme feature</li>
-                <li>$include [string] path to required file</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>void</li>
-            </ul>
-
-            <h4>Action</h4>
-            <ul>
-                <li>adds specified file if the current theme supports the feature</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>require_if_theme_supports</h3>
-
-            <h4>Example</h4>
-
-            <p>Justin Tadlock - Theme Hybrid Framework <a href="http://themehybrid.com/"><img src="images/link.png"></a></p>
-
-            <pre>// In Parent
-function extensions() {
-    /* Load the Cleaner Caption extension if supported. */
-    require_if_theme_supports(
-        'cleaner-caption',
-        trailingslashit( HYBRID_EXTENSIONS ) . 'cleaner-caption.php'
-    );
-
-    /* Load the Entry Views extension if supported. */
-    require_if_theme_supports(
-        'entry-views',
-        trailingslashit( HYBRID_EXTENSIONS ) . 'entry-views.php'
-    );
-}
-
-// In Child
-add_theme_support( 'entry-views' );</pre>
-
-        </article>
-
-        <article>
-
-            <h3>wp_parse_args</h3>
-
-            <h4>Args</h4>
-            <ul>
-                <li>$args [string|array] value(s) to merge with $defaults</li>
-                <li>$defaults [string|array] value(s) to merge with $args</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[array] merged value(s)</li>
-            </ul>
-
-            <h4>Action</h4>
-            <ul>
-                <li>adds specified file if the current theme supports the feature</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>wp_parse_args</h3>
-
-            <h4>Example</h4>
-
-            <p>Otto - Simple Facebook Connect <a href="http://ottopress.com/wordpress-plugins/simple-facebook-connect/"><img src="images/link.png"></a></p>
-
-            <pre>function get_sfc_activity_feed($args) {
-    $args = wp_parse_args($args, array(
-        'header'=>'true',
-        'site'=>'',
-        'bordercolor'=>'000000',
-        'width'=>'260',
-        'height'=>'400',
-        'font'=>'lucida+grande',
-        'colorscheme'=>'light',
-        'recommendations'=>'false')
-    );
-    extract($args);
-
-    return "&lt;fb:activity site='{$host}' {$path} width='{$width}' height='{$height}' header='{$header}' colorscheme='{$colorscheme}' font='{$font}' border_color='{$bordercolor}' recommendations='{$recommendations}'&gt;&lt;/fb:activity&gt;";
-}</pre>
-
-        </article>
 
 	</section>
 

@@ -64,6 +64,10 @@
 
         </article>
 
+        <article class="transition">
+            <p>I need a function that will help me select the initial option for a select tag.</p>
+        </article>
+
         <article>
 
             <h3>selected</h3>
@@ -96,14 +100,19 @@
             <p>Aaron Campbell - Twitter Widget Pro <a href="http://bluedogwebservices.com/wordpress-plugin/twitter-widget-pro/"><img src="images/link.png"></a></p>
 
             <pre>&lt;select name="<?php echo $this->get_field_name( 'items' ); ?>"&gt;
-&lt;?php for ( $i = 1; $i <= 20; ++$i ) {
-    echo "&lt;option value='$i' ";
-    echo selected( $instance['items'], $i, false );
-    echo "&gt;$i&lt;/option&gt;";
-}
+&lt;?php
+    for ( $i = 1; $i <= 20; ++$i ) {
+        echo "&lt;option value='$i' ";
+        echo selected( $instance['items'], $i, false );
+        echo "&gt;$i&lt;/option&gt;";
+    }
 ?&gt;
 &lt;/select&gt;</pre>
 
+        </article>
+
+        <article class="transition">
+            <p>Gee...I would love a function that could tell me tell me what hook is currently running.</p>
         </article>
 
         <article>
@@ -172,6 +181,10 @@
 
 		</article>
 
+        <article class="transition">
+            <p>How can I tell if a function is executing in the loop or not?</p>
+        </article>
+
         <article>
 
             <h3>in_the_loop</h3>
@@ -206,6 +219,10 @@ function soc_insert_socialize( $content ) {
     return $content;
 }</pre>
 
+        </article>
+
+        <article class="transition">
+            <p>I want to output the difference between times that is easy for humans to read.</p>
         </article>
 
         <article>
@@ -246,6 +263,10 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
 
         </article>
 
+        <article class="transition">
+            <p>Wouldn't it be cool to simply append a list of query variables to a URL?</p>
+        </article>
+
         <article>
 
             <h3>add_query_arg</h3>
@@ -281,10 +302,15 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
         'expire' => strtotime( '+1 day', time() )
     );
 
-    $download_url = add_query_arg( params, home_url() );
+    $download_url = add_query_arg( $params, home_url() );
     return $download_url;
 }</pre>
+            <!-- @todo: add example output -->
 
+        </article>
+
+        <article class="transition">
+            <p>I want my theme to be able to intelligently load a template from a child theme before loading it from the parent theme.</p>
         </article>
 
         <article>
@@ -334,6 +360,10 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
     return apply_filters( 'tribe_events_template_' . $template, $file );
 }</pre>
 
+        </article>
+
+        <article class="transition">
+            <p>I want to include files only if my theme has support for a specific feature.</p>
         </article>
 
         <article>
@@ -386,6 +416,10 @@ add_theme_support( 'entry-views' );</pre>
 
         </article>
 
+        <article class="transition">
+            <p>Isn't there an easier way to get the ID of the current page's object.</p>
+        </article>
+
         <article>
 
             <h3>get_queried_object_id</h3>
@@ -435,6 +469,10 @@ add_theme_support( 'entry-views' );</pre>
 
         </article>
 
+        <article class="transition">
+            <p>Can't it be easier to provide a list of default arguments for a functions arguments?</p>
+        </article>
+
         <article>
 
             <h3>wp_parse_args</h3>
@@ -481,6 +519,10 @@ add_theme_support( 'entry-views' );</pre>
     return "&lt;fb:activity site='{$host}' {$path} width='{$width}' height='{$height}' header='{$header}' colorscheme='{$colorscheme}' font='{$font}' border_color='{$bordercolor}' recommendations='{$recommendations}'&gt;&lt;/fb:activity&gt;";
 }</pre>
 
+        </article>
+
+        <article class="transition">
+            <p>I need a way to impress my friends.</p>
         </article>
 
         <article>
@@ -561,7 +603,7 @@ wp_list_pluck( $posts, 'ID' );</pre>
 
 			<h4>Example</h4>
 
-            <p>Scribu's - Posts 2 Posts <a href="http://scribu.net/wordpress/posts-to-posts"><img src="images/link.png"></a></p>
+            <p>Scribus - Posts 2 Posts <a href="http://scribu.net/wordpress/posts-to-posts"><img src="images/link.png"></a></p>
 
             <pre>public function get_related( $post_id, $extra_qv = array() ) {
     $post_id = (array) $post_id;

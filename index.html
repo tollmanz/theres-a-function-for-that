@@ -72,6 +72,9 @@
 
             <h3>selected</h3>
 
+            <h4>Purpose</h4>
+            <p>Add "selected" attribute to an option tag</p>
+
             <h4>Args</h4>
             <ul>
                 <li>$checked [mixed] value to match against $current</li>
@@ -82,11 +85,6 @@
             <h4>Return</h4>
             <ul>
                 <li>[string] 'selected="selected"' or empty string</li>
-            </ul>
-
-            <h4>Related</h4>
-            <ul>
-                <li>checked(), disabled()</li>
             </ul>
 
         </article>
@@ -119,6 +117,9 @@
 
             <h3>current_filter</h3>
 
+            <h4>Purpose</h4>
+            <p>Determine the currently running filter within a callback function</p>
+
 			<h4>Args</h4>
 			<ul>
 				<li>none</li>
@@ -128,11 +129,6 @@
 			<ul>
 				<li>[string] name of the currently executing filter</li>
 			</ul>
-
-            <h4>Notes</h4>
-            <ul>
-                <li>current_action also exists</li>
-            </ul>
 
 		</article>
 
@@ -178,6 +174,7 @@
         taxim_please_use_filter( __FUNCTION__, $filter );
     }
 }</pre>
+            <p>current_action() also exists</p>
 
 		</article>
 
@@ -188,6 +185,9 @@
         <article>
 
             <h3>in_the_loop</h3>
+
+            <h4>Purpose</h4>
+            <p>Determine if function is executing inside or outside of the loop</p>
 
             <h4>Args</h4>
             <ul>
@@ -228,6 +228,8 @@ function soc_insert_socialize( $content ) {
         <article>
 
             <h3>human_time_diff</h3>
+
+            <h4>Display a human readable time difference</h4>
 
             <h4>Args</h4>
             <ul>
@@ -270,6 +272,9 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
         <article>
 
             <h3>add_query_arg</h3>
+
+            <h4>Purpose</h4>
+            <p>Append query variables and values to a URL</p>
 
             <h4>Args</h4>
             <ul>
@@ -317,6 +322,9 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
 
             <h3>locate_template</h3>
 
+            <h4>Purpose</h4>
+            <p>Requires a template from either a child or parent theme's folder</p>
+
             <h4>Args</h4>
             <ul>
                 <li>$template_names [array|string] Template file(s) to search for</li>
@@ -327,11 +335,6 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
             <h4>Return</h4>
             <ul>
                 <li>[string] path to file</li>
-            </ul>
-
-            <h4>Action</h4>
-            <ul>
-                <li>require's (or require_once's) the template</li>
             </ul>
 
         </article>
@@ -370,6 +373,10 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
 
             <h3>require_if_theme_supports</h3>
 
+            <h4>Purpose</h4>
+
+            <p>Requires a file if the theme supports a specified feature</p>
+
             <h4>Args</h4>
             <ul>
                 <li>$feature [string] name of theme feature</li>
@@ -379,11 +386,6 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
             <h4>Return</h4>
             <ul>
                 <li>void</li>
-            </ul>
-
-            <h4>Action</h4>
-            <ul>
-                <li>adds specified file if the current theme supports the feature</li>
             </ul>
 
         </article>
@@ -423,6 +425,10 @@ add_theme_support( 'entry-views' );</pre>
         <article>
 
             <h3>get_queried_object_id</h3>
+
+            <h4>Purpose</h4>
+
+            <p>Gets the ID for the current page's main object</p>
 
             <h4>Args</h4>
             <ul>
@@ -477,6 +483,9 @@ add_theme_support( 'entry-views' );</pre>
 
             <h3>wp_parse_args</h3>
 
+            <h4>Purpose</h4>
+            <p>Guarantees certain indices in a an array are set by providing default values</p>
+
             <h4>Args</h4>
             <ul>
                 <li>$args [string|array] value(s) to merge with $defaults</li>
@@ -486,11 +495,6 @@ add_theme_support( 'entry-views' );</pre>
             <h4>Return</h4>
             <ul>
                 <li>[array] merged value(s)</li>
-            </ul>
-
-            <h4>Action</h4>
-            <ul>
-                <li>adds specified file if the current theme supports the feature</li>
             </ul>
 
         </article>
@@ -529,10 +533,13 @@ add_theme_support( 'entry-views' );</pre>
 
             <h3>wp_list_pluck</h3>
 
+            <h4>Purpose</h4>
+            <p>Select a single index's value from a collection of similar objects/arrays</p>
+
             <h4>Args</h4>
             <ul>
-                <li>$list [array|object]</li>
-                <li>$field [string]</li>
+                <li>$list [object|array] A list or array of objects</li>
+                <li>$field [string|int] A field from $list to obtain</li>
             </ul>
 
             <h4>Return</h4>
@@ -623,6 +630,17 @@ wp_list_pluck( $posts, 'ID' );</pre>
 }</pre>
 
 		</article>
+
+        <article>
+            <h2>In Conclusion</h2>
+            <p>Use more Core functions</p>
+            <p>Read more Core</p>
+
+            <h3>Me</h3>
+            <p>Zack Tollman</p>
+            <p>@tollmanz</p>
+            <p>tollmanz.com</p>
+        </article>
 
 	</section>
 

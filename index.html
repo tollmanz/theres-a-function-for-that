@@ -97,15 +97,20 @@
 
             <p>Aaron Campbell - Twitter Widget Pro <a href="http://bluedogwebservices.com/wordpress-plugin/twitter-widget-pro/"><img src="images/link.png"></a></p>
 
-            <pre>&lt;select name="<?php echo $this->get_field_name( 'items' ); ?>"&gt;
+            <pre>// $instance['items'] = 6
+&lt;select name="<?php echo $this->get_field_name( 'items' ); ?>"&gt;
 &lt;?php
     for ( $i = 1; $i <= 20; ++$i ) {
         echo "&lt;option value='$i' ";
-        echo selected( $instance['items'], $i, false );
+        selected( $instance['items'], $i );
         echo "&gt;$i&lt;/option&gt;";
     }
 ?&gt;
 &lt;/select&gt;</pre>
+            
+        <pre>&lt;option value='5'&gt;5&lt;/option&gt;
+&lt;option value='6' selected="selected"&gt;6&lt;/option&gt;
+&lt;option value='7'&gt;7&lt;/option&gt;</pre>
 
         </article>
 
@@ -229,7 +234,8 @@ function soc_insert_socialize( $content ) {
 
             <h3>human_time_diff</h3>
 
-            <h4>Display a human readable time difference</h4>
+            <h4>Purpose</h4>
+            <p>Display a human readable time difference</p>
 
             <h4>Args</h4>
             <ul>
@@ -280,7 +286,6 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
             <ul>
                 <li>$args [array] query var/value pairs</li>
                 <li>$url [string] URL to append query vars to</li>
-                <li>*none required</li>
             </ul>
 
             <h4>Return</h4>
@@ -310,6 +315,8 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
     $download_url = add_query_arg( $params, home_url() );
     return $download_url;
 }</pre>
+
+        <p>http://site.com/?download_key=key&email=tollmanz@gmail.com...</p>
             <!-- @todo: add example output -->
 
         </article>
@@ -595,7 +602,8 @@ var_dump( $posts );</pre>
 			<h4>Example</h4>
             <pre>
 $posts = get_posts();
-wp_list_pluck( $posts, 'ID' );</pre>
+$ids = wp_list_pluck( $posts, 'ID' );
+var_dump( $ids );</pre>
 
             <pre><b>array</b>
   0 <font color="#888a85">=&gt;</font> <small>int</small> <font color="#4e9a06">801</font>
@@ -610,7 +618,7 @@ wp_list_pluck( $posts, 'ID' );</pre>
 
 			<h4>Example</h4>
 
-            <p>Scribus - Posts 2 Posts <a href="http://scribu.net/wordpress/posts-to-posts"><img src="images/link.png"></a></p>
+            <p>Scribu - Posts 2 Posts <a href="http://scribu.net/wordpress/posts-to-posts"><img src="images/link.png"></a></p>
 
             <pre>public function get_related( $post_id, $extra_qv = array() ) {
     $post_id = (array) $post_id;

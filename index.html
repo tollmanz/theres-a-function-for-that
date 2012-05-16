@@ -482,56 +482,6 @@ add_theme_support( 'entry-views' );</pre>
         </article>
 
         <article class="transition">
-            <p><blockquote>set default arguments</blockquote></p>
-        </article>
-
-        <article>
-
-            <h3>wp_parse_args</h3>
-
-            <h4>Purpose</h4>
-            <p>Guarantees certain indices in a an array are set by providing default values</p>
-
-            <h4>Args</h4>
-            <ul>
-                <li>$args [string|array] value(s) to merge with $defaults</li>
-                <li>$defaults [string|array] value(s) to merge with $args</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[array] merged value(s)</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>wp_parse_args</h3>
-
-            <h4>Example</h4>
-
-            <p>Otto - Simple Facebook Connect <a href="http://ottopress.com/wordpress-plugins/simple-facebook-connect/"><img src="images/link.png"></a></p>
-
-            <pre>function get_sfc_activity_feed($args) {
-    $args = wp_parse_args($args, array(
-        'header'=>'true',
-        'site'=>'',
-        'bordercolor'=>'000000',
-        'width'=>'260',
-        'height'=>'400',
-        'font'=>'lucida+grande',
-        'colorscheme'=>'light',
-        'recommendations'=>'false')
-    );
-    extract($args);
-
-    return "&lt;fb:activity site='{$host}' {$path} width='{$width}' height='{$height}' header='{$header}' colorscheme='{$colorscheme}' font='{$font}' border_color='{$bordercolor}' recommendations='{$recommendations}'&gt;&lt;/fb:activity&gt;";
-}</pre>
-
-        </article>
-
-        <article class="transition">
             <p><blockquote>impress my friends</blockquote></p>
         </article>
 

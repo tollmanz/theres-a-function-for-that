@@ -183,49 +183,6 @@
 		</article>
 
         <article class="transition">
-            <p><blockquote>loop awareness</blockquote></p>
-        </article>
-
-        <article>
-
-            <h3>in_the_loop</h3>
-
-            <h4>Purpose</h4>
-            <p>Determine if function is executing inside or outside of the loop</p>
-
-            <h4>Args</h4>
-            <ul>
-                <li>none</li>
-            </ul>
-
-            <h4>Return</h4>
-            <ul>
-                <li>[bool] True if in loop; false if not</li>
-            </ul>
-
-        </article>
-
-        <article>
-
-            <h3>in_the_loop</h3>
-
-            <h4>Example</h4>
-
-            <p>Jon Bishop - Socialize <a href="http://www.jonbishop.com/2011/04/introducing-socialize-2-0-wordpress-plugin/"><img src="images/link.png"></a></p>
-
-            <pre>add_filter( 'the_content', 'soc_insert_socialize' );
-add_filter( 'the_excerpt', 'soc_insert_socialize' );
-
-function soc_insert_socialize( $content ) {
-    if ( in_the_loop() ) {
-        // Magic
-    }
-    return $content;
-}</pre>
-
-        </article>
-
-        <article class="transition">
             <p><blockquote>simpler times</blockquote></p>
         </article>
 
@@ -478,6 +435,76 @@ add_theme_support( 'entry-views' );</pre>
 
     return $nav_menu;
 }</pre>
+
+        </article>
+
+        <article class="transition">
+            <p><blockquote>use PHP in my JS</blockquote></p>
+        </article>
+
+        <article>
+
+            <h3>wp_localize_script</h3>
+
+            <h4>Purpose</h4>
+
+            <p>Writes a JSON encoded object for use with JS</p>
+
+            <h4>Args</h4>
+            <ul>
+                <li>$handle [string] name of script in which data is used</li>
+                <li>$object_name [string] name of resulting JS object</li>
+                <li>$l10n [array] associative, single-dimension array of data</li>
+            </ul>
+
+            <h4>Return</h4>
+            <ul>
+                <li>void</li>
+            </ul>
+
+        </article>
+
+        <article>
+
+            <h3>wp_localize_script</h3>
+
+            <p>Mo Jangda - Zone Manager <a href="http://digitalize.ca/wordpress-plugins/zoninator/"><img src="images/link.png"></a></p>
+
+            <pre>function admin_enqueue_scripts() {
+    wp_enqueue_script( 'zon-js', URL . 'js/zoninator.js', ... );
+
+    $options = array(
+        'baseUrl' => $this->_get_zone_page_url(),
+        'adminUrl' => admin_url(),
+        ...
+        'zoneLockPeriod' => $this->zone_lock_period,
+        'zoneLockPeriodMax' => $this->zone_max_lock_period,
+    );
+    wp_localize_script( 'zon-js', 'zoninatorOptions', $options );
+}</pre>
+
+        </article>
+            
+        <article>
+
+            <h3>wp_localize_script</h3>
+
+            <pre>&lt;script type='text/javascript'&gt;
+/* &lt;![CDATA[ */
+var zoninatorOptions = {
+    "baseUrl":"http:\/\/trunkosaurus.dev\/wp-admin\/admin.php?page=zoninator",
+    "adminUrl":"http:\/\/trunkosaurus.dev\/wp-admin\/",
+    "ajaxNonceAction":"zone-nonce-ajax-action",
+    "errorGeneral":"Sorry, something went wrong! Please try again?",
+    "errorZoneLock":"Sorry, this zone is in use by another user and is currently locked. Please try again later.",
+    "errorZoneLockMax":"Sorry, you have reached the maximum idle limit and will now be redirected to the Dashboard.",
+    "zoneLockPeriod":"30",
+    "zoneLockPeriodMax":"600"
+};
+/* ]]&gt; */
+&lt;/script&gt;
+&lt;script type='text/javascript'
+src='http://trunkosaurus.dev/wp-content/plugins/zoninator/js/zoninator.js?ver=0.2'&gt;&lt;/script&gt;</pre>
 
         </article>
 

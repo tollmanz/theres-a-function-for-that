@@ -32,7 +32,8 @@
             <p>
                 Zack Tollman, 10up LLC<br>
                 @tollmanz<br>
-                10up.com
+                10up.com<br>
+                tollmanz.com
             </p>
 
         </article>
@@ -313,9 +314,6 @@ echo $human_time_next_cron . '&lt;/h2&gt;';</pre>
             <pre>public static function getTemplateHierarchy( $template ) {
     $tribe_ecp = TribeEvents::instance();
 
-    if ( substr( $template, -4)  != '.php' )
-        $template .= '.php';
-
     $templates = array( 'events/' . $template );
 
     if ( $theme_file = locate_template( $templates ) )
@@ -492,8 +490,8 @@ add_theme_support( 'entry-views' );</pre>
             <pre>&lt;script type='text/javascript'&gt;
 /* &lt;![CDATA[ */
 var zoninatorOptions = {
-    "baseUrl":"http:\/\/trunkosaurus.dev\/wp-admin\/admin.php?page=zoninator",
-    "adminUrl":"http:\/\/trunkosaurus.dev\/wp-admin\/",
+    "baseUrl":"http:\/\/site.com\/wp-admin\/admin.php?page=zoninator",
+    "adminUrl":"http:\/\/site.com\/wp-admin\/",
     "ajaxNonceAction":"zone-nonce-ajax-action",
     "errorGeneral":"Sorry, something went wrong! Please try again?",
     "errorZoneLock":"Sorry, this zone is in use by another user and is currently locked. Please try again later.",
@@ -504,7 +502,7 @@ var zoninatorOptions = {
 /* ]]&gt; */
 &lt;/script&gt;
 &lt;script type='text/javascript'
-src='http://trunkosaurus.dev/wp-content/plugins/zoninator/js/zoninator.js?ver=0.2'&gt;&lt;/script&gt;</pre>
+src='http://site.com/wp-content/plugins/zoninator/js/zoninator.js?ver=0.2'&gt;&lt;/script&gt;</pre>
 
         </article>
 
@@ -521,7 +519,7 @@ src='http://trunkosaurus.dev/wp-content/plugins/zoninator/js/zoninator.js?ver=0.
 
             <h4>Args</h4>
             <ul>
-                <li>$list [object|array] A list or array of objects</li>
+                <li>$list [object|array] A list of objects or arrays</li>
                 <li>$field [string|int] A field from $list to obtain</li>
             </ul>
 
@@ -594,23 +592,21 @@ var_dump( $ids );</pre>
 
 			<h4>Example</h4>
 
-            <p>Scribu - Posts 2 Posts <a href="http://scribu.net/wordpress/posts-to-posts"><img src="images/link.png"></a></p>
+            <p>Kailey Lampert - Add New Default Avatar <a href="http://trepmal.com/plugins/add-new-default-avatar/"><img src="images/link.png"></a></p>
 
-            <pre>public function get_related( $post_id, $extra_qv = array() ) {
-    $post_id = (array) $post_id;
+            <pre>function upgrade() {
+    //upgrade option, we can now save multiple avatar options
+    $opts = get_option( 'kl_addnewdefaultavatar', false );
 
-    $connected = $this->get_connected( $post_id, $extra_qv );
-    if ( !$connected )
-        return false;
+    //get current default option
+    $current = get_option( 'avatar_default' );
 
-    if ( !$connected->have_posts() )
-        return $connected;
+    //get any custom created avatars
+    $unavailable = wp_list_pluck( $opts, 'url' );
 
-    $connected_ids = wp_list_pluck( $connected->posts, 'ID' );
-
-    return $this->get_connected( $connected_ids, array(
-        'post__not_in' => $post_id,
-    ) );
+    //if the current wasn't created by this plugin, update the backup
+    if ( ! in_array( $current, $unavailable ) )
+        update_option( 'pre_anda_avatar_default', $current );
 }</pre>
 
 		</article>
@@ -634,6 +630,7 @@ var_dump( $ids );</pre>
             <h3>Me</h3>
             <p>Zack Tollman</p>
             <p>@tollmanz</p>
+            <p>10up.com</p>
             <p>tollmanz.com</p>
         </article>
 

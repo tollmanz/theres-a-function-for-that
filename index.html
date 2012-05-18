@@ -591,23 +591,21 @@ var_dump( $ids );</pre>
 
 			<h4>Example</h4>
 
-            <p>Scribu - Posts 2 Posts <a href="http://scribu.net/wordpress/posts-to-posts"><img src="images/link.png"></a></p>
+            <p>Kailey Lampert - Add New Default Avatar <a href="http://trepmal.com/plugins/add-new-default-avatar/"><img src="images/link.png"></a></p>
 
-            <pre>public function get_related( $post_id, $extra_qv = array() ) {
-    $post_id = (array) $post_id;
+            <pre>function upgrade() {
+    //upgrade option, we can now save multiple avatar options
+    $opts = get_option( 'kl_addnewdefaultavatar', false );
 
-    $connected = $this->get_connected( $post_id, $extra_qv );
-    if ( !$connected )
-        return false;
+    //get current default option
+    $current = get_option( 'avatar_default' );
 
-    if ( !$connected->have_posts() )
-        return $connected;
+    //get any custom created avatars
+    $unavailable = wp_list_pluck( $opts, 'url' );
 
-    $connected_ids = wp_list_pluck( $connected->posts, 'ID' );
-
-    return $this->get_connected( $connected_ids, array(
-        'post__not_in' => $post_id,
-    ) );
+    //if the current wasn't created by this plugin, update the backup
+    if ( ! in_array( $current, $unavailable ) )
+        update_option( 'pre_anda_avatar_default', $current );
 }</pre>
 
 		</article>
